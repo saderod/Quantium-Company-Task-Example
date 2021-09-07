@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import re
+import textwrap
+
+data = pd.read_excel("C:/Users/kiki/Downloads/QVI_transaction_data2.xlsx")
+data.describe()
+n = 0
+drop_index_list = []
+for i in range(len(name_list)):
+        
+    string_list = name_list[i].split()
+    
+    if "Salsa" in string_list:
+        print("found at line: " + str(i))
+        drop_index_list.append(i)
+    else:
+        pass
+
+data = data.drop(labels=drop_index_list, axis=0)
+
+plt.boxplot(data["PROD_QTY"])
+
+data[data["PROD_QTY"] == 200]
+
+data = data.drop(labels=[68564,68565] , axis=0)
+
+number = []
+
+for i in data_names:
+    chopped = str(i).split()
+    for q in chopped:
+        second_chop = list(q)
+        for w in second_chop:
+            if w.isdigit():
+                number.append(w)
+
+long_list = "".join(number)
+
+final_list = textwrap.wrap(long_list, 3)
+
+data["Pack_Size"] = final_list
+
+data.to_excel("Quantium Task Example.xlsx")
